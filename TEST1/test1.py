@@ -47,8 +47,11 @@ def pad_pattern_end(a):
         for j in i:
             if maxNum < len(j): maxNum = len(j)
         for j in i:
-            length = len(j)
-            for k in range(maxNum - length): j.append(j[length - 1 - k])
+            while(maxNum > len(j)):
+                length = len(j)
+                for k in range(maxNum - length):
+                    if length - 1 - k < 0: break
+                    j.append(j[length - 1 - k])
     return a
 def pad_constant_central(a):
     for i in a:
@@ -100,7 +103,7 @@ if __name__ == "__main__":
     print("Slice_fixed_point:\n", Slice_fixed_point(d, 2, 1))
     d = [[[1, 2, 3, 4, 5, 7], [2, 3, 4, 5], [2, 3, 4, 5, 6], [2, 3, 4, 5, 6]], [[1, 2, 3, 4, 5, 7], [2, 3, 4, 5], [2, 3, 4, 5, 6], [2, 3, 4, 5, 6]]]
     print("slice_last_point:\n", slice_last_point(d, 3))
-    d = [[[1, 2, 3, 4], [2, 3, 4, 5], [2, 3, 4, 5, 6], [2, 3, 4, 6]], [[1, 2, 3, 4, 5, 7], [2, 4, 5], [2, 3, 4, 5, 6], [2, 3, 4, 5, 6]]]
+    d = [[[1, 2], [2, 3, 4, 5], [2, 3, 4, 5, 6], [2, 3, 4, 6]], [[1, 2, 3, 4, 5, 7], [4, 5], [2, 3, 4, 5, 6], [2, 3, 4, 5, 6]]]
     print(pad_pattern_end(d))
     d = [[[1, 2, 3, 4], [2, 3, 4, 5], [2, 3, 4, 5, 6], [2, 6]], [[1, 2, 3, 4, 5, 7], [2, 4, 5], [2, 3, 4, 5, 6], [2, 3, 4, 5, 6]]]
     print(pad_constant_central(d))
