@@ -41,11 +41,15 @@ def slice_last_point(a, end):
         return np.array(List)
     except: return -1
 
+def getLength(List):
+    maxNum = 0
+    for j in List:
+        if maxNum < len(j): maxNum = len(j)
+    return maxNum
+
 def pad_pattern_end(a):
     for i in a:
-        maxNum = 0
-        for j in i:
-            if maxNum < len(j): maxNum = len(j)
+        maxNum = getLength(i)
         for j in i:
             while(maxNum > len(j)):
                 length = len(j)
@@ -53,11 +57,10 @@ def pad_pattern_end(a):
                     if length - 1 - k < 0: break
                     j.append(j[length - 1 - k])
     return a
+
 def pad_constant_central(a):
     for i in a:
-        maxNum = 0
-        for j in i:
-            if maxNum < len(j): maxNum = len(j)
+        maxNum = getLength(i)
         for j in i:
             while(1):
                 if len(j) == maxNum: break
@@ -86,6 +89,7 @@ def Tensor_Sumproducts(a, b):
 
 def Tensor_Relu(a):
     return torch.clamp(numpy2tensor(a), min = 0)
+
 def Tensor_Relu_prime(a):
     a = Tensor_Relu(a)
     one = torch.ones_like(a)
