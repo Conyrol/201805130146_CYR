@@ -1,6 +1,20 @@
-### pytorch 笔记
+### pytorch && numpy 笔记
 
 ------
+
+#### numpy 广播机制：
+
+广播的原则：为了更够广播，进行操作的两个数组的尾部维度必须相同，或者其中一个数组的尾部维度是1。广播会在缺失和（或）长度为1的维度上进行
+
+```python
+arr1 = np.array([[0, 0, 0],[1, 1, 1],[2, 2, 2], [3, 3, 3]])
+arr2 = np.array([1, 2, 3])
+arr_sum = arr1 + arr2
+```
+
+<img src="D:\myWork\pytorch\201805130146_CYR\学习笔记配图\广播机制.png" style="zoom:50%;" />
+
+<img src="D:\myWork\pytorch\201805130146_CYR\学习笔记配图\广播机制2.png" style="zoom:50%;" />
 
 #### ndarray 矩阵：
 
